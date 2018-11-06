@@ -7,8 +7,17 @@
     using System.Web;
     using System.Web.Security;
 
+    /// <summary>
+    /// 通用字符串扩展
+    /// </summary>
     public static class SIC_Exten
     {
+        /// <summary>
+        /// 编码
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="toType"></param>
+        /// <returns></returns>
         public static string EnCode(this string str, CodeType toType)
         {
             string str2 = str;

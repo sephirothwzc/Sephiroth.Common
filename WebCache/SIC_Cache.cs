@@ -63,6 +63,11 @@ namespace Sephiroth.Infrastructure.Common.WebCache
             CacheWriter(cachekey, cacheValue, cache_time);
         }
 
+        /// <summary>
+        /// 缓存删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cacheKey"></param>
         public void CacheRemove<T>(string cacheKey)
         {
             string cachekey = typeof(T).GetHashCode() + cacheKey ?? "";

@@ -20,25 +20,25 @@ namespace Sephiroth.Infrastructure.Common.AutoMapper
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-
         public static T MapTo<T>(this object obj)
         {
             if (obj == null) return default(T);
-            Mapper.Initialize(ctx => ctx.CreateMap(obj.GetType(), typeof(T)));
-            return Mapper.Map<T>(obj);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap(obj.GetType(), typeof(T)));
+            var mapper = config.CreateMapper();
+            return mapper.Map<T>(obj);
         }
 
         /// <summary>
         /// 集合到集合
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="ListT"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-
-        public static List<T> MapTo<T>(this IEnumerable obj)
+        public static List<T> MapTo<T,ListT>(this IEnumerable obj)
         {
             if (obj == null) throw new ArgumentNullException();
-            Mapper.Initialize(ctx => ctx.CreateMap(obj.GetType(), typeof(T)));
+            Mapper.Initialize(ctx => ctx.CreateMap(typeof(ListT), typeof(T)));
             return Mapper.Map<List<T>>(obj);
         }
     }
