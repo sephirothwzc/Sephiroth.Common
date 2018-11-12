@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace Sephiroth.Infrastructure.Common
 {
     using System;
     using System.Runtime.CompilerServices;

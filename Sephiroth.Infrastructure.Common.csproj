@@ -88,6 +88,7 @@
     <Compile Include="QuartzJob\SIC_Quartz.cs" />
     <Compile Include="ReflectionHelper\ReflectionHelper.cs" />
     <Compile Include="Result\SIC_Result.cs" />
+    <Compile Include="StringExten\SIC_AESHelper.cs" />
     <Compile Include="StringExten\SIC_Exten.cs" />
     <Compile Include="WebCache\SIC_Cache.cs" />
     <Compile Include="WebCache\SIC_ContextCache.cs" />
