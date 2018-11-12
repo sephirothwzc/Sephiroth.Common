@@ -18,7 +18,7 @@
         /// <param name="str"></param>
         /// <param name="toType"></param>
         /// <returns></returns>
-        public static string EnCode(this string str, CodeType toType)
+        public static string EnCode(this string str, CodeType toType = CodeType.MD5)
         {
             string str2 = str;
             switch (toType)
@@ -58,7 +58,14 @@
             return sh1;
         }
 
-        public static string EnCode(this string str, string key, CodeType toType)
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <param name="key">密钥</param>
+        /// <param name="toType">类型</param>
+        /// <returns></returns>
+        public static string EnCode(this string str, string key, CodeType toType = CodeType.MD5)
         {
             string str2 = str;
             switch (toType)

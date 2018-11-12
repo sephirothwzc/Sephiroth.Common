@@ -84,8 +84,26 @@ namespace Sephiroth.Infrastructure.Common.WebClient
         /// <param name="data"></param>
         /// <param name="method"></param>
         /// <param name="charset"></param>
+        /// <param name="DateTimeFormats"></param>
         /// <returns></returns>
-        public T webRequest<T>(string url, object data = null, string method = "POST", string charset = "UTF8", string DateTimeFormats = "yyyy-MM-dd HH:mm:ss")
+        public T WebRequest<T>(string url, object data = null, string method = "POST", string charset = "UTF8", string DateTimeFormats = "yyyy-MM-dd HH:mm:ss")
+        {
+            string outjson = string.Empty;
+            return this.WebRequest<T>(url, out outjson, data, method, charset, DateTimeFormats);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <param name="method"></param>
+        /// <param name="charset"></param>
+        /// <param name="DateTimeFormats"></param>
+        /// <param name="resultJson"></param>
+        /// <returns></returns>
+        public T WebRequest<T>(string url, out string resultJson, object data = null, string method = "POST", string charset = "UTF8", string DateTimeFormats = "yyyy-MM-dd HH:mm:ss")
         {
             using (System.Net.WebClient webClient = new System.Net.WebClient())
             {
@@ -93,29 +111,29 @@ namespace Sephiroth.Infrastructure.Common.WebClient
                 webClient.Headers["Method"] = method.ToString();
                 webClient.Headers["Content-Type"] = string.Format(@"application/json;charset={0}", charset);
                 webClient.Encoding = Encoding.UTF8;
-                string dwstring;
                 if ("POST".Equals(method))
                 {
                     var timeConverter = new IsoDateTimeConverter { DateTimeFormat = DateTimeFormats };
                     string dataString = JsonConvert.SerializeObject(data, Formatting.Indented, timeConverter);
-                    dwstring = webClient.UploadString(new Uri(url), method, dataString);
+                    resultJson = webClient.UploadString(new Uri(url), method, dataString);
                 }
                 else
-                    dwstring = webClient.DownloadString(new Uri(url));
-                return JsonConvert.DeserializeObject<T>(dwstring);
+                    resultJson = webClient.DownloadString(new Uri(url));
+                return JsonConvert.DeserializeObject<T>(resultJson);
             }
         }
 
-		/// <summary> 
-		/// 异步调用返回结果 
-		/// </summary> 
-		/// <typeparam name="T"></typeparam> 
-		/// <param name="uri"></param> 
-		/// <param name="datas"></param> 
-		/// <param name="method"></param> 
-		/// <param name="charset"></param> 
-		/// <returns></returns> 
-		public async System.Threading.Tasks.Task<T> WebRequestAsync<T>(Uri uri, IDictionary<string, object> datas = null, string method = "POST", string charset = "UTF8")
+
+        /// <summary> 
+        /// 异步调用返回结果 
+        /// </summary> 
+        /// <typeparam name="T"></typeparam> 
+        /// <param name="uri"></param> 
+        /// <param name="datas"></param> 
+        /// <param name="method"></param> 
+        /// <param name="charset"></param> 
+        /// <returns></returns> 
+        public async System.Threading.Tasks.Task<T> WebRequestAsync<T>(Uri uri, IDictionary<string, object> datas = null, string method = "POST", string charset = "UTF8")
 		{
 			string data = this.CreateDataJson(datas);
 			using (System.Net.WebClient webClient = new System.Net.WebClient())
@@ -132,7 +150,15 @@ namespace Sephiroth.Infrastructure.Common.WebClient
 			}
 		}
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="uri"></param>
+        /// <param name="datas"></param>
+        /// <param name="method"></param>
+        /// <param name="charset"></param>
+        /// <param name="RunT"></param>
 		public void WebRequestCompleted<T>(Uri uri, IDictionary<string, object> datas = null, string method = "POST", string charset = "UTF8", Action<T> RunT = null)
 		{
 			string data = this.CreateDataJson(datas);
