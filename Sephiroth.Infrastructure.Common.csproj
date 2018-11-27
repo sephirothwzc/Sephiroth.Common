@@ -90,6 +90,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\GlobalActionFilterAttribute.cs" />
     <Compile Include="Attributes\PaginationParam.cs" />
     <Compile Include="Attributes\SIC_ConditionAttribute.cs" />
     <Compile Include="AutoFacUtil\AutoFacConfig.cs" />

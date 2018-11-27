@@ -13,47 +13,45 @@ namespace Sephiroth.Infrastructure.Common.Attributes
     /// </summary>
     public class PaginationParam
     {
-        private int pagesize = 10;
         /// <summary>
         /// 页面大小 默认10
         /// </summary>
-        public int pageSize { get { return pagesize; } set { pagesize = value; } }
+        public int PageSize { get; set; } = 10;
 
-        private int pagenumber = -1;
         /// <summary>
         /// 页码 默认-1 显示所有 不分页
         /// </summary>
-        public int pageNumber { get { return pagenumber; } set { pagenumber = value; } } 
+        public int PageNumber { get; set; } = -1; 
 
         /// <summary>
         /// order by 字段 
         /// </summary>
         [Required]
-        public string sortName { get; set; }
+        public string SortName { get; set; }
 
         /// <summary>
         /// asc desc
         /// </summary>
         [Required]
-        public string sortOrder { get; set; }
+        public string SortOrder { get; set; }
 
         /// <summary>
         /// 页面开始位置
         /// </summary>
-        public int pageStart
+        public int PageStart
         {
             get
             {
-                return (pageNumber - 1) * pageSize + 1;
+                return (PageNumber - 1) * PageSize + 1;
             }
         }
 
         /// <summary>
         /// 页面结束位置
         /// </summary>
-        public int pageEnd
+        public int PageEnd
         {
-            get { return pageNumber * pageSize; }
+            get { return PageNumber * PageSize; }
         }
     }
 }
