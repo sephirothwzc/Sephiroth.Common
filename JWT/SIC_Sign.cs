@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SIC_Sign
     {
         #region 属性
@@ -27,9 +30,8 @@ namespace Common
         /// <summary>
         /// 验证签名
         /// </summary>
-        /// <param name="appkey"></param>
-        /// <param name="appsecret"></param>
-        /// <param name="jsonParam"></param>
+        /// <param name="signature"></param>
+        /// <param name="cipherText"></param>
         /// <returns></returns>
         public static bool CheckSign(string signature, ref string cipherText)
         {
@@ -60,12 +62,16 @@ namespace Common
         #endregion
     }
 
+    /// <summary>
+    /// 加密字符串
+    /// </summary>
     public class DESEncryption
     {
         /// <summary>
         /// 对字符串进行DES加密
         /// </summary>
         /// <param name="sourceString">待加密的字符串</param>
+        /// <param name="sKey"></param>
         /// <returns>加密后的BASE64编码的字符串</returns>
         public static string Encrypt(string sourceString, string sKey)
         {
