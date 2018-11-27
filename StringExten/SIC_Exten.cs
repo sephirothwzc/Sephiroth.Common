@@ -25,7 +25,7 @@
             {
                 case CodeType.MD5:
                     return GetSwcMD5(str);
-                    //return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "md5");
+                //return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "md5");
 
                 case CodeType.SHA1:
                     return GetSwcSH1(str);
@@ -72,7 +72,7 @@
             {
                 case CodeType.MD5:
                     return GetSwcMD5(key + str);
-                    //return FormsAuthentication.HashPasswordForStoringInConfigFile(key + str, "md5");
+                //return FormsAuthentication.HashPasswordForStoringInConfigFile(key + str, "md5");
 
                 case CodeType.SHA1:
                     return GetSwcSH1(key + str);
@@ -94,11 +94,22 @@
         //    return "";
         //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static bool NotEmpty(this string str)
         {
             return !string.IsNullOrWhiteSpace(str);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public static double ToDouble(this string str, double def)
         {
             double num;
@@ -125,13 +136,24 @@
             return def;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="beginTime"></param>
+        /// <returns></returns>
         public static long ToTimeMs(this DateTime dt, DateTime beginTime)
         {
             long ticks = dt.Ticks - beginTime.Ticks;
             TimeSpan span = new TimeSpan(ticks);
-            return (long) span.TotalMilliseconds;
+            return (long)span.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string Week(string date)
         {
             string str = DateTime.Parse(date).DayOfWeek.ToString();
@@ -170,17 +192,29 @@
             return "星期二";
         }
 
+        /// <summary>
+        /// 编码格式
+        /// </summary>
         public enum CodeType
         {
+            /// <summary>
+            /// 
+            /// </summary>
             DES = 3,
+            /// <summary>
+            /// 
+            /// </summary>
             MD5 = 1,
+            /// <summary>
+            /// 
+            /// </summary>
             SHA1 = 2
         }
 
         /// <summary>
         /// 获取中文字符串的首字母
         /// </summary>
-        /// <param name="strText"></param>
+        /// <param name="str"></param>
         /// <returns></returns>
         public static string GetChineseSpell(this string str)
         {

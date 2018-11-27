@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Sephiroth.Infrastructure.Common.WebCache
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SIC_ContextCache: SIC_ICache
     {
         /// <summary>

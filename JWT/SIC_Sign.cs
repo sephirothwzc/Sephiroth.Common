@@ -15,18 +15,18 @@ namespace Common
     {
         #region 属性
 
-        //签名秘钥
+        /// <summary>
+        /// 签名秘钥
+        /// </summary>
         public static string appsecret = "KY0j9HmtJ571Ksma"; //
-        //明文加密秘钥
+        /// <summary>
+        /// 明文加密秘钥
+        /// </summary>
         public static string appkey = "qyAwvU46fc";
 
         #endregion
 
         #region 基础方法
-
-
-
-
         /// <summary>
         /// 验证签名
         /// </summary>

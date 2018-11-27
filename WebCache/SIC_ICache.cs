@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sephiroth.Infrastructure.Common.WebCache
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface SIC_ICache
     {
 

@@ -20,6 +20,9 @@ using System.Threading.Tasks;
 
 namespace Sephiroth.Infrastructure.Common.Lambda
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SIC_Lambda
     {
 
@@ -27,7 +30,6 @@ namespace Sephiroth.Infrastructure.Common.Lambda
         /// 递归方法
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
         /// <param name="f"></param>
         /// <returns></returns>
         public static Func<T> Fix<T>(Func<Func<T>, Func<T>> f)

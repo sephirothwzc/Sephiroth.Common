@@ -67,6 +67,14 @@ namespace Sephiroth.Infrastructure.Common.WebClient
         {
             return SIC_DynamicWebServices.InvokeWebService(url, null, methodname, args);
         }
+        /// <summary>
+        /// 动态调用web服务
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="classname"></param>
+        /// <param name="methodname"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static object InvokeWebService(string url, string classname, string methodname, object[] args)
         {
             string @namespace = "EnterpriseServerBase.WebService.DynamicWebCalling";
@@ -93,9 +101,11 @@ namespace Sephiroth.Infrastructure.Common.WebClient
                 ICodeCompiler icc = csc.CreateCompiler();
 
                 //设定编译参数  
-                CompilerParameters cplist = new CompilerParameters();
-                cplist.GenerateExecutable = false;
-                cplist.GenerateInMemory = true;
+                CompilerParameters cplist = new CompilerParameters
+                {
+                    GenerateExecutable = false,
+                    GenerateInMemory = true
+                };
                 cplist.ReferencedAssemblies.Add("System.dll");
                 cplist.ReferencedAssemblies.Add("System.XML.dll");
                 cplist.ReferencedAssemblies.Add("System.Web.Services.dll");
@@ -172,7 +182,7 @@ namespace Sephiroth.Infrastructure.Common.WebClient
             CompilerParameters cp = new CompilerParameters();
             CompilerResults cr = icc.CompileAssemblyFromDom(cp, ccu);
             agentType = cr.CompiledAssembly.GetTypes()[0];
-            agent = Activator.CreateInstance(agentType);
+            Agent = Activator.CreateInstance(agentType);
         }
 
         /// <summary>
@@ -195,7 +205,7 @@ namespace Sephiroth.Infrastructure.Common.WebClient
         /// <returns></returns>
         public object Invoke(MethodInfo method, params object[] args)
         {
-            return method.Invoke(agent, args);
+            return method.Invoke(Agent, args);
         }
 
         /// <summary>
@@ -206,6 +216,22 @@ namespace Sephiroth.Infrastructure.Common.WebClient
             get
             {
                 return agentType.GetMethods();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public object Agent
+        {
+            get
+            {
+                return agent;
+            }
+
+            set
+            {
+                agent = value;
             }
         }
     }

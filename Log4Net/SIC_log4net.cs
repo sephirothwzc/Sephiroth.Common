@@ -49,6 +49,9 @@ namespace Sephiroth.Infrastructure.Common.Log4Net
 
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum MessageType
     {
         /// <summary>

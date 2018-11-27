@@ -8,8 +8,14 @@ using Newtonsoft.Json.Converters;
 
 namespace Sephiroth.Infrastructure.Common.WebClient
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SIC_WebClient
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public SIC_WebClient()
         {
         }
