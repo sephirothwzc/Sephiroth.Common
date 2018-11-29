@@ -1,8 +1,10 @@
 ﻿using System;
+using Common.Logging;
+
 namespace Sephiroth.Infrastructure.Common.Log4Net
 {
     /// <summary>
-    /// 
+    /// 扩展log
     /// </summary>
     public class SIC_log4net
 	{
@@ -15,7 +17,7 @@ namespace Sephiroth.Infrastructure.Common.Log4Net
 
 		public static void WriteLog(Type t, Exception ex)
 		{
-			log4net.ILog log = log4net.LogManager.GetLogger(t);
+			ILog log = LogManager.GetLogger(t);
 			log.Error("Error", ex);
 		}
 
@@ -31,17 +33,25 @@ namespace Sephiroth.Infrastructure.Common.Log4Net
 
 		public static void WriteLog(Type t, string msg, MessageType messageType = MessageType.Info)
 		{
-			log4net.ILog log = log4net.LogManager.GetLogger(t);
-            if (messageType == MessageType.Error)
-                log.Error(msg);
-            else if (messageType == MessageType.Fatal)
-                log.Fatal(msg);
-            else if (messageType == MessageType.Debug)
-                log.Debug(msg);
-            else if (messageType == MessageType.Info)
-                log.Info(msg);
-            else if (messageType == MessageType.Warn)
-                log.Warn(msg);
+			ILog log = LogManager.GetLogger(t);
+            switch (messageType)
+            {
+                case MessageType.Error:
+                    log.Error(msg);
+                    break;
+                case MessageType.Fatal:
+                    log.Fatal(msg);
+                    break;
+                case MessageType.Debug:
+                    log.Debug(msg);
+                    break;
+                case MessageType.Info:
+                    log.Info(msg);
+                    break;
+                case MessageType.Warn:
+                    log.Warn(msg);
+                    break;
+            }
         }
 
 		#endregion
