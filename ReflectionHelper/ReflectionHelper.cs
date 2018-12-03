@@ -95,6 +95,20 @@ namespace Sephiroth.Infrastructure.Common.ReflectionHelper
             }
             return ((Func<TIn, TOut>)_Dic[key])(tIn);
         }
-        #endregion 
+        #endregion
+
+        #region 属性赋值
+        /// <summary>
+        /// 属性设置
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="pair"></param>
+        public static void SetPairValue(object model,KeyValuePair<string,object> pair)
+        {
+            var pro = model.GetType().GetProperty(pair.Key);
+            if (pro == null) return;
+            pro.SetValue(model, pair.Value);
+        }
+        #endregion
     }
 }
