@@ -110,5 +110,6 @@ namespace Sephiroth.Infrastructure.Common.ReflectionHelper
             pro.SetValue(model, pair.Value);
         }
         #endregion
+
     }
 }
